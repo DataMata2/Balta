@@ -1,0 +1,16 @@
+{%extends 'main.html' %} {% block content %}
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <label for="username">Username</label>
+        <input type="text" name="username" class="username" />
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+
+        <input type="submit" value="Submit" />
+    </form>
+    <p>Do not have an account? <a href="{% url 'register' %}">Register</a></p>
+</div>
+{% endblock content %}

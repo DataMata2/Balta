@@ -1,0 +1,39 @@
+{% extends 'main.html' %} {% block content %}
+
+<h1>Admin Page</h1>
+
+<div class="form-container">
+    <form action="{% url 'a-side' %}" method="get">
+        <input type="text" name="q" placeholder="Search Shoes..." required />
+        <input type="submit" value="Search" />
+    </form>
+</div>
+
+<div class="form-container">
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Order Alphabetically" name="sortByName" />
+        <input type="submit" value="Order Numerically" name="sortById" />
+    </form>
+</div>
+
+<h5><a href="{% url 'create' %}">Add Shoe</a></h5>
+
+<hr />
+
+<div class="list-container">
+    {% for shoe in shoes %}
+    <div>
+        <a href="{% url 'update' shoe.id %}">Edit</a>
+        <a href="{% url 'delete' shoe.id %}">Delete</a>
+        <h5>{{ shoe.id }} - {{ shoe.name }}</h5>
+        <div>
+            <h5>Size: {{ shoe.size }}</h5>
+            <h5>Price: {{ shoe.price }}</h5>
+            <h5>Quantity: {{ shoe.quantity }}</h5>
+        </div>
+        <hr />
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
